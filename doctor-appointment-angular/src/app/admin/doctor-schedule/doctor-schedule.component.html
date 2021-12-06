@@ -1,0 +1,296 @@
+<div class="mb-35">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-4 text-gray-800">Doctor Schedule Management</h1>
+
+    <!-- DataTales Example -->
+    <span id="message"></span>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col">
+                    <h6 class="m-0 font-weight-bold text-primary">Doctor Schedule List</h6>
+                </div>
+                <div class="col" align="right">
+                    <button (click)="open(adddocschedule,{})" type="button" name="add_exam" id="add_doctor_schedule"
+                        class="btn btn-success btn-circle btn-sm"><i class="fas fa-plus"></i></button>
+                </div>
+                <!-- Form Add Doctor Schedule -->
+                <ng-template #adddocschedule let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">
+                            Add Doctor Schedule
+                        </h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="doctorScheduleForm">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Select A doctor <span class="redText">*</span>
+                                    </label>
+                                    <div class="input-group">
+                                        <select class="custom-select" id="inputGroupSelect04" formControlName="doctor_id">
+                                            <option selected>Select Doctor</option>
+                                            <option *ngFor="let doctor of doctors" value="{{doctor.doctor_id}}">
+                                                {{doctor.doctor_name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="exampleInputEmail1">Schedule Date <span class="redText">*</span></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i
+                                                    class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <input type="text" name="doctor_schedule_date" formControlName="doctor_schedule_date" (focus)="d.toggle()" ngbDatepicker #d="ngbDatepicker"
+                                            id="doctor_schedule_date" class="form-control"
+                                             />
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="exampleInputEmail1">Start Time <span class="redText">*</span></label>
+                                    <ngb-timepicker  formControlName="doctor_schedule_start_time"></ngb-timepicker>
+  
+  <hr/>
+  
+  <!-- <pre>Selected time: {{time | json}}</pre> -->
+                                    <!-- <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i
+                                                    class="fas fa-clock"></i></span>
+                                        </div> -->
+                                        <!-- (focus)="dt.toggle()" ngbTimepicker #dt="ngbTimepicker" -->
+                                        <!-- <input type="text" name="doctor_schedule_start_time"  
+                                            id="doctor_schedule_start_time" class="form-control datetimepicker-input" 
+                                            data-toggle="datetimepicker" data-target="#doctor_schedule_start_time"
+                                            required onkeydown="return false" onpaste="return false;"
+                                            ondrop="return false;" autocomplete="off" />
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="exampleInputEmail1">End Time <span class="redText">*</span></label>
+                                    <ngb-timepicker  formControlName="doctor_schedule_end_time"></ngb-timepicker>
+  
+  <hr/>
+<!--   
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i
+                                                    class="fas fa-clock"></i></span>
+                                        </div>
+                                        <input type="text" name="doctor_schedule_end_time" id="doctor_schedule_end_time"
+                                            class="form-control datetimepicker-input" data-toggle="datetimepicker"
+                                            data-target="#doctor_schedule_end_time" required onkeydown="return false"
+                                            onpaste="return false;" ondrop="return false;" autocomplete="off" />
+                                    </div> -->
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="exampleInputEmail1">Avg Consulting Time <span
+                                            class="redText">*</span></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i
+                                                    class="fas fa-clock"></i></span>
+                                        </div>
+                                        <select class="custom-select" id="inputGroupSelect04" formControlName="average_consulting_time">
+                                            <option selected>Select consulting Duration</option>
+                                            <option value="5">5 minute</option>
+                                            <option value="10">10 minute</option>
+                                            <option value="15">15 minute</option>
+                                            <option value="20">20 minute</option>
+                                            <option value="25">25 minute</option>
+                                            <option value="30">30 minute</option>
+                                            <option value="35">35 minute</option>
+                                            <option value="40">40 minute</option>
+                                            <option value="45">45 minute</option>
+                                            <option value="50">50 minute</option>
+                                            <option value="55">55 minute</option>
+                                            <option value="60">60 minute</option>
+                                            <option value="65">65 minute</option>
+                                            <option value="70">70 minute</option>
+                                            <option value="75">75 minute</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark" (click)="addDocSchedule()">
+                            Add
+                        </button>
+                        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">
+                            Close
+                        </button>
+                    </div>
+                </ng-template>
+                <!-- Form eDIT Doctor Schedule -->
+                <ng-template #editdocschedule let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">
+                            Add Doctor Schedule
+                        </h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="doctorScheduleForm">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Select A doctor <span class="redText">*</span>
+                                    </label>
+                                    <div class="input-group">
+                                        <select class="custom-select" id="inputGroupSelect04" formControlName="doctor_id">
+                                            <option selected>Select Doctor</option>
+                                            <option *ngFor="let doctor of doctors" value="{{doctor.doctor_id}}">
+                                                {{doctor.doctor_name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="exampleInputEmail1">Schedule Date <span class="redText">*</span></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i
+                                                    class="fa fa-calendar"></i></span>
+                                        </div>
+                                        <input type="text" name="doctor_schedule_date" formControlName="doctor_schedule_date" (focus)="d.toggle()" ngbDatepicker #d="ngbDatepicker"
+                                            id="doctor_schedule_date" class="form-control"
+                                             />
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="exampleInputEmail1">Start Time <span class="redText">*</span></label>
+                                    <ngb-timepicker  formControlName="doctor_schedule_start_time"></ngb-timepicker>
+  
+  <hr/>
+  
+  <!-- <pre>Selected time: {{time | json}}</pre> -->
+                                    <!-- <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i
+                                                    class="fas fa-clock"></i></span>
+                                        </div> -->
+                                        <!-- (focus)="dt.toggle()" ngbTimepicker #dt="ngbTimepicker" -->
+                                        <!-- <input type="text" name="doctor_schedule_start_time"  
+                                            id="doctor_schedule_start_time" class="form-control datetimepicker-input" 
+                                            data-toggle="datetimepicker" data-target="#doctor_schedule_start_time"
+                                            required onkeydown="return false" onpaste="return false;"
+                                            ondrop="return false;" autocomplete="off" />
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="exampleInputEmail1">End Time <span class="redText">*</span></label>
+                                    <ngb-timepicker  formControlName="doctor_schedule_end_time"></ngb-timepicker>
+  
+  <hr/>
+<!--   
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i
+                                                    class="fas fa-clock"></i></span>
+                                        </div>
+                                        <input type="text" name="doctor_schedule_end_time" id="doctor_schedule_end_time"
+                                            class="form-control datetimepicker-input" data-toggle="datetimepicker"
+                                            data-target="#doctor_schedule_end_time" required onkeydown="return false"
+                                            onpaste="return false;" ondrop="return false;" autocomplete="off" />
+                                    </div> -->
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="exampleInputEmail1">Avg Consulting Time <span
+                                            class="redText">*</span></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i
+                                                    class="fas fa-clock"></i></span>
+                                        </div>
+                                        <select class="custom-select" id="inputGroupSelect04" formControlName="average_consulting_time">
+                                            <option selected>Select consulting Duration</option>
+                                            <option value="5">5 minute</option>
+                                            <option value="10">10 minute</option>
+                                            <option value="15">15 minute</option>
+                                            <option value="20">20 minute</option>
+                                            <option value="25">25 minute</option>
+                                            <option value="30">30 minute</option>
+                                            <option value="35">35 minute</option>
+                                            <option value="40">40 minute</option>
+                                            <option value="45">45 minute</option>
+                                            <option value="50">50 minute</option>
+                                            <option value="55">55 minute</option>
+                                            <option value="60">60 minute</option>
+                                            <option value="65">65 minute</option>
+                                            <option value="70">70 minute</option>
+                                            <option value="75">75 minute</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark" (click)="editDocSchedule()">
+                            Edit
+                        </button>
+                        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">
+                            Close
+                        </button>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="doctor_schedule_table" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Doctor Name</th>
+                            <th>Schedule Date</th>
+                            <th>Schedule Day</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Consulting Time</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let doctor_schedules of doctor_schedules">
+                            <td>{{doctor_schedules.doctor_name}}</td>
+                            <td>{{doctor_schedules.doctor_schedule_date}}</td>
+                            <td>{{doctor_schedules.doctor_schedule_day}}</td>
+                            <td>{{doctor_schedules.doctor_schedule_start_time}}</td>
+                            <td>{{doctor_schedules.doctor_schedule_end_time}}</td>
+                            <td>{{doctor_schedules.average_consulting_time}} Minute</td>
+                            <td>{{doctor_schedules.doctor_schedule_status}}</td>
+                            <td>
+                                <div align="center">
+                                    <button type="button" name="edit_button"
+                                        (click)="open(editdocschedule,doctor_schedules)"
+                                        class="btn btn-warning btn-circle btn-sm edit_button"><i
+                                            class="fas fa-edit"></i></button>
+                                    &nbsp;
+                                    <button  (click)="remove(doctor_schedules.doctor_name,doctor_schedules.doctor_schedule_id)" type="button" name="delete_button"
+                                        class="btn btn-danger btn-circle btn-sm delete_button"><i
+                                            class="fas fa-times"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

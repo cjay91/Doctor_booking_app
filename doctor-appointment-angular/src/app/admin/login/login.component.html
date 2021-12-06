@@ -1,0 +1,28 @@
+
+<body class="text-center">
+    <main class="form-signin">
+         <form method="post" id="login_form" [formGroup]="loginForm">
+            <h1 class="h3 mb-3 fw-normal">Doctor Appointment Management System</h1>
+            <span id="error"></span>
+            <div class="form-group">
+                <input type="text" name="admin_email_address" formControlName="email_address" id="admin_email_address" class="form-control" required autofocus data-parsley-type="email" data-parsley-trigger="keyup" placeholder="Enter Email Address..." />
+            </div>
+            <div class="form-group">
+                <input type="password" name="admin_password" formControlName="password" id="admin_password" class="form-control" required  data-parsley-trigger="keyup" placeholder="Password" />
+            </div>
+            <div class="form-group">
+                <button type="submit" name="login_button" id="login_button" class="btn btn-primary btn-user btn-block" (click)="login()">Login</button>
+            </div>
+        </form>
+        <br>
+        <br>
+        <h3>Admin Login</h3>
+        <p><b>Email Address : </b>johnsmith@gmail.com<br>
+          <b>Password : </b>password</p>
+        <h3>Doctor Login</h3>
+        <p><b>Email Address : </b>peterparker@gmail.com<br>
+          <b>Password : </b>password</p>
+        <br>
+        <br>
+    </main>
+</body>

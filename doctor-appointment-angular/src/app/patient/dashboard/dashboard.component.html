@@ -1,0 +1,96 @@
+<div class="mb-35">
+
+	<br />
+	<div class="card">
+		<div class="card-header">
+			<h4>Doctor Schedule List</h4>
+		</div>
+		<div class="card-body">
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered" id="appointment_list_table">
+					<thead>
+						<tr>
+							<th>Doctor Name</th>
+							<th>Education</th>
+							<th>Speciality</th>
+							<th>Appointment Date</th>
+							<th>Appointment Day</th>
+							<th>Available Time</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let doctor_schedule of doctor_schedules">
+							<td>{{doctor_schedule.doctor_name}}</td>
+							<td>{{doctor_schedule.doctor_degree}}</td>
+							<td>{{doctor_schedule.doctor_expert_in}}</td>
+							<td>{{doctor_schedule.doctor_schedule_date}}</td>
+							<td>{{doctor_schedule.doctor_schedule_day}}</td>
+							<td>{{doctor_schedule?.doctor_schedule_start_time}} - {{doctor_schedule?.doctor_schedule_end_time}}</td>
+							<td>
+								<div>
+									<button type="button" name="get_appointment"
+										class="btn btn-primary btn-sm get_appointment"
+										(click)="open(viewapp,doctor_schedule)">Get Appointment</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<ng-template #viewapp let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Make Appointment</h4>
+		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+			<span aria-hidden="true">×</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<table class="table">
+
+			<tbody>
+				<tr>							
+					<th width="40%" class="text-right">Doctor Name</th>
+					<td>{{selectedData.doctor_name}}</td>
+				</tr>
+				<tr>
+					<th width="40%" class="text-right">Appointment Date</th>
+					<td>{{selectedData.doctor_schedule_date}}</td>
+				</tr>
+				<tr>
+					<th width="40%" class="text-right">Appointment Day</th>
+					<td>{{selectedData.doctor_schedule_day}}</td>
+				</tr>
+				<tr>
+					<th width="40%" class="text-right">Available Time</th>
+					<td>{{ selectedData?.doctor_schedule_start_time}} - {{selectedData?.doctor_schedule_end_time}}</td>
+				</tr>
+
+			</tbody>
+		</table>
+		<form [formGroup]="appForm">
+			<div class="form-group">
+				<label><b>Reason for Appointment</b></label>
+				<textarea name="reason_for_appointment" id="reason_for_appointment" class="form-control" required
+					rows="5"></textarea>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button
+		type="button"
+		class="btn btn-outline-dark"
+		(click)="addApp()"
+	  >
+		Save
+	  </button>
+		<button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">
+			Close
+		</button>
+	</div>
+</ng-template>

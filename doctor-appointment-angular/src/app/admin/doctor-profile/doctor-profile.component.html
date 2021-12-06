@@ -1,0 +1,99 @@
+<div class="mb-35">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-4 text-gray-800">Profile</h1>
+
+    <!-- DataTales Example -->
+
+    <form  [formGroup]="doctorForm">
+        <div class="row">
+            <div class="col-md-10"><span id="message"></span>
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="m-0 font-weight-bold text-primary">Profile</h6>
+                            </div>
+                            <div clas="col" align="right">
+                                <input type="hidden" name="action" value="doctor_profile" />
+                                <input type="hidden" name="hidden_id" id="hidden_id" />
+                                <button (click)="edit_button_cliked()" type="submit" name="edit_button" id="edit_button"
+                                    class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button>
+                                &nbsp;&nbsp;
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!--<div class="row">
+                                    <div class="col-md-6">!-->
+                        <span id="form_message"></span>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Doctor Email Address <span class="text-danger">*</span></label>
+                                    <input type="text" name="doctor_email_address" id="doctor_email_address" formControlName="doctor_email_address"
+                                        class="form-control" required data-parsley-type="email"
+                                        data-parsley-trigger="keyup" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Doctor Password <span class="text-danger">*</span></label>
+                                    <input type="password" name="doctor_password" id="doctor_password" formControlName="doctor_password"
+                                        class="form-control" required data-parsley-trigger="keyup" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Doctor Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" required formControlName="doctor_name"
+                                        data-parsley-trigger="keyup" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Doctor Phone No. <span class="text-danger">*</span></label>
+                                    <input type="text" name="doctor_phone_no" id="doctor_phone_no" class="form-control" formControlName="doctor_phone_no"
+                                        required data-parsley-trigger="keyup" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Doctor Address </label>
+                                    <input type="text" class="form-control" formControlName="doctor_address" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Doctor Date of Birth </label>
+                                    <input type="text" name="doctor_date_of_birth" id="doctor_date_of_birth" readonly formControlName="doctor_date_of_birth"
+                                        class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Doctor Degree <span class="text-danger">*</span></label>
+                                    <input type="text" name="doctor_degree" id="doctor_degree" class="form-control" formControlName="doctor_degree"
+                                        required data-parsley-trigger="keyup" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Doctor Speciality <span class="text-danger">*</span></label>
+                                    <input type="text" name="doctor_expert_in" id="doctor_expert_in" formControlName="doctor_expert_in"
+                                        class="form-control" required data-parsley-trigger="keyup" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group">
+                            <label>Doctor Image <span class="text-danger">*</span></label>
+                            <br />
+                            <input type="file" name="doctor_profile_image" id="doctor_profile_image" />
+                            <div id="uploaded_image"></div>
+                            <input type="hidden" name="hidden_doctor_profile_image" id="hidden_doctor_profile_image" />
+                        </div> -->
+                        <!--</div>
+                                </div>!-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

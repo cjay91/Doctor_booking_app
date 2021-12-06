@@ -1,0 +1,17 @@
+#signup
+Post http://localhost:3000/admin/signup HTTP/1.1
+content-type: application/json
+
+{
+    "admin_email_address":"zunnurainb@gmail.com",
+    "admin_password": "12346",
+    "admin_name": "Zunnurain",
+    "hospital_name": "Hos",
+    "hospital_address": "addre",
+    "hospital_contact_no": "02030202020",
+    "hospital_logo": "./sad./asd"
+}
+
+
+#signup
+Get http://localhost:3000/admin/total_today_appointment HTTP/1.1
